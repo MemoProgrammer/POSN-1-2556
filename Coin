@@ -54,5 +54,4 @@ int main()
         return 0;
     }
     cout<<money(n,0);
-    //cout<<count;
 }
