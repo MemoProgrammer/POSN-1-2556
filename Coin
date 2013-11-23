@@ -1,0 +1,58 @@
+#include<iostream>
+using namespace std;
+unsigned long long A[100005][5];
+unsigned long long money(int moneies,int check)
+{
+    unsigned long long count=0,tmp=0;
+    if(moneies==0||check==4)
+    {
+        //cout<<endl;
+        return 1;
+    }
+    if(A[moneies][check]!=0)
+        return A[moneies][check];
+    if(moneies>=20&&check==0)//Note 20
+    {
+        tmp=money(moneies-20,0);
+        count+=tmp;
+        A[moneies-20][0]=tmp;
+    }
+    if(moneies>=10&&check<=1)//Coin 10
+    {
+        tmp=money(moneies-10,1);
+        count+=tmp;
+        A[moneies-10][1]=tmp;
+    }
+
+    if(moneies>=5&&check<=2)//Coin 5
+    {
+        tmp=money(moneies-5,2);
+        count+=tmp;
+        A[moneies-5][2]=tmp;
+    }
+    if(moneies>=2&&check<=3)//Coin 2
+    {
+        tmp=money(moneies-2,3);
+        count+=tmp;
+        A[moneies-2][3]=tmp;
+    }
+    if(moneies>=1&&check<4)//coin 1
+    {
+        tmp=money(moneies-1,4);
+        count+=tmp;
+        A[moneies-1][4]=tmp;
+    }
+    return count;
+}
+int main()
+{
+    int n;
+    cin>>n;
+    if(n==0)
+    {
+        cout<<"0";
+        return 0;
+    }
+    cout<<money(n,0);
+    //cout<<count;
+}
